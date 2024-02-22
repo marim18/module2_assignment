@@ -14,3 +14,6 @@ Consider using all the knowledge you have to make the best solution you can.
 **Do not mixup the example and the template"**
 
 Submit URL to your git repository.
+# tasks: 
+register and get task code 
+assignment 2 : {"title":"Roman","description":"Given a string representing a roman numeral [1, 100], return the integer value of the numeral.","taskID":"rEu25ZX","usierID":"40d9070cecb11d77ffd51535c381d1c059222578452bec5931dae9f0a317ffa5","parameters":"LXVI"}
