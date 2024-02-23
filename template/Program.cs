@@ -44,10 +44,25 @@ Console.WriteLine($"TASK: {ANSICodes.Effects.Bold}{task2?.title}{ANSICodes.Reset
 
 //reply
 answer = $"{Temperatureconverter.Fahrenheittocelcius(task2.parameters)}";
-answer = answer.Replace(',', '.');
+answer = answer.Replace(',', '.'); //this is some retarded bs
 Response task2AnswerResponse = await httpUtils.Post(baseURL + taskEndpoint + myPersonalID + "/" + taskID, answer);
 Console.WriteLine($"Answer: {Colors.Green}{task2AnswerResponse}{ANSICodes.Reset}");
 
+//third task
+taskID = "otYK2"; 
+Response task3Response = await httpUtils.Get(baseURL + taskEndpoint + myPersonalID + "/" + taskID); 
+Task task3 = JsonSerializer.Deserialize<Task>(task3Response.content);
+Console.WriteLine($"TASK: {ANSICodes.Effects.Bold}{task3?.title}{ANSICodes.Reset}\n{task3?.description}\nParameters: {Colors.Yellow}{task3.parameters}{ANSICodes.Reset}");
+
+answer = $"{wordcounter.Getuni1uewords(task3.parameters)}";
+Response task3AnswerResponse = await httpUtils.Post(baseURL + taskEndpoint + myPersonalID + "/" + taskID, answer);
+Console.WriteLine($"Answer: {Colors.Green}{task3AnswerResponse}{ANSICodes.Reset}");
+
+//task 4
+taskID = "KO1pD3";
+Response task4Response = await httpUtils.Get(baseURL + taskEndpoint + myPersonalID + "/" + taskID); 
+Task task4 = JsonSerializer.Deserialize<Task>(task4Response.content);
+Console.WriteLine($"TASK: {ANSICodes.Effects.Bold}{task4?.title}{ANSICodes.Reset}\n{task4?.description}\nParameters: {Colors.Yellow}{task4.parameters}{ANSICodes.Reset}");
 
 class Task
 {

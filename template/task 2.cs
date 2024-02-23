@@ -39,4 +39,22 @@ namespace everywhere
             return Math.Round(c, 2);
         }
     }
+    public static class wordcounter{
+    public static string Getuni1uewords(string input){
+      string[] wordArray = input.Split(",");
+        HashSet<string> uniqueWords = new HashSet<string>(wordArray);
+        List<string> alphabetically = uniqueWords.ToList();
+        alphabetically.Sort();
+        string result = string.Join(",", alphabetically); 
+        return result;
+        }
+    }
+    public static class series{
+        public static int seriesnext(){
+        int lastNumber = series[series.Length - 1];
+        int nextNumber = lastNumber + 1;
+        return nextNumber;
+        }
+    }
+
 }
