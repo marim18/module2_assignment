@@ -44,6 +44,7 @@ Console.WriteLine($"TASK: {ANSICodes.Effects.Bold}{task2?.title}{ANSICodes.Reset
 
 //reply
 answer = $"{Temperatureconverter.Fahrenheittocelcius(task2.parameters)}";
+answer = answer.Replace(',', '.');
 Response task2AnswerResponse = await httpUtils.Post(baseURL + taskEndpoint + myPersonalID + "/" + taskID, answer);
 Console.WriteLine($"Answer: {Colors.Green}{task2AnswerResponse}{ANSICodes.Reset}");
 
