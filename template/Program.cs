@@ -2,7 +2,7 @@
 using System.Text.Json;
 using AnsiTools;
 using Colors = AnsiTools.ANSICodes.Colors;
-
+using everywhere;
 Console.Clear();
 Console.WriteLine("Starting Assignment 2");
 
@@ -24,4 +24,35 @@ string taskID = "rEu25ZX"; // We get the taskID from the previous response and u
 //#### FIRST TASK 
 // Fetch the details of the task from the server.
 Response task1Response = await httpUtils.Get(baseURL + taskEndpoint + myPersonalID + "/" + taskID); // Get the task from the server
-Console.WriteLine(task1Response);
+Task task1 = JsonSerializer.Deserialize<Task>(task1Response.content);
+Console.WriteLine($"TASK: {ANSICodes.Effects.Bold}{task1?.title}{ANSICodes.Reset}\n{task1?.description}\nParameters: {Colors.Yellow}{task1?.parameters}{ANSICodes.Reset}");
+
+
+string parameters = task1?.parameters;
+
+// Call the rommannumeral function with the extracted parameters
+string answer = $"{RomanConverter.Romannumeral(parameters)}";
+// Send the answer to the server
+Response task1AnswerResponse = await httpUtils.Post(baseURL + taskEndpoint + myPersonalID + "/" + taskID, answer);
+Console.WriteLine($"Answer: {Colors.Green}{task1AnswerResponse}{ANSICodes.Reset}");
+
+//secound task
+taskID = "aAaa23"; 
+Response task2Response = await httpUtils.Get(baseURL + taskEndpoint + myPersonalID + "/" + taskID); 
+Task task2 = JsonSerializer.Deserialize<Task>(task2Response.content);
+Console.WriteLine($"TASK: {ANSICodes.Effects.Bold}{task2?.title}{ANSICodes.Reset}\n{task2?.description}\nParameters: {Colors.Yellow}{task2.parameters}{ANSICodes.Reset}");
+
+//reply
+answer = $"{Temperatureconverter.Fahrenheittocelcius(task2.parameters)}";
+Response task2AnswerResponse = await httpUtils.Post(baseURL + taskEndpoint + myPersonalID + "/" + taskID, answer);
+Console.WriteLine($"Answer: {Colors.Green}{task2AnswerResponse}{ANSICodes.Reset}");
+
+
+class Task
+{
+    public string? title { get; set; }
+    public string? description { get; set; }
+    public string? taskID { get; set; }
+    public string? usierID { get; set; }
+    public string? parameters { get; set; }
+}
