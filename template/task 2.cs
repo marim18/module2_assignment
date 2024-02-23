@@ -32,28 +32,43 @@ namespace everywhere
             return num1;
         }
     }
-    public class Temperatureconverter{
-        public static double Fahrenheittocelcius(string fahrenheit){
-            double f =  double.Parse(fahrenheit);
+    public class Temperatureconverter
+    {
+        public static double Fahrenheittocelcius(string fahrenheit)
+        {
+            double f = double.Parse(fahrenheit);
             double c = (5.0 / 9.0) * (f - 32);
             return Math.Round(c, 2);
         }
     }
-    public static class wordcounter{
-    public static string Getuni1uewords(string input){
-      string[] wordArray = input.Split(",");
-        HashSet<string> uniqueWords = new HashSet<string>(wordArray);
-        List<string> alphabetically = uniqueWords.ToList();
-        alphabetically.Sort();
-        string result = string.Join(",", alphabetically); 
-        return result;
+    public static class wordcounter
+    {
+        public static string Getuni1uewords(string input)
+        {
+            string[] wordArray = input.Split(",");
+            HashSet<string> uniqueWords = new HashSet<string>(wordArray);
+            List<string> alphabetically = uniqueWords.ToList();
+            alphabetically.Sort();
+            string result = string.Join(",", alphabetically);
+            return result;
         }
     }
-    public static class series{
-        public static int seriesnext(){
-        int lastNumber = series[series.Length - 1];
-        int nextNumber = lastNumber + 1;
-        return nextNumber;
+    public static class series
+    {
+        public static int seriesnext(string input)
+        {
+            int[] inputArray = input.Split(",").Select(int.Parse).ToArray();
+            int x = 0;
+            for (int i = 1; i < inputArray.Length; i++)
+            {
+                if ((inputArray[i] - inputArray[i - 1]) != x)
+                {
+                  x++;
+                }
+            }
+            int lastNumber = inputArray[inputArray.Length - 1];
+            int nextNumber = lastNumber + x;
+            return nextNumber;
         }
     }
 

@@ -64,6 +64,10 @@ Response task4Response = await httpUtils.Get(baseURL + taskEndpoint + myPersonal
 Task task4 = JsonSerializer.Deserialize<Task>(task4Response.content);
 Console.WriteLine($"TASK: {ANSICodes.Effects.Bold}{task4?.title}{ANSICodes.Reset}\n{task4?.description}\nParameters: {Colors.Yellow}{task4.parameters}{ANSICodes.Reset}");
 
+answer = $"{series.seriesnext(task4.parameters)}";
+Response task4AnswerResponse = await httpUtils.Post(baseURL + taskEndpoint + myPersonalID + "/" + taskID, answer);
+Console.WriteLine($"Answer: {Colors.Green}{task4AnswerResponse}{ANSICodes.Reset}");
+
 class Task
 {
     public string? title { get; set; }
